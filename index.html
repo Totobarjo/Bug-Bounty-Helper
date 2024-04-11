@@ -225,14 +225,14 @@ switch(type)
     case 33:
         url =  'http://wwwb-dedup.us.archive.org:8083/cdx/search?url=' + site + '/&matchType=domain&collapse=digest&output=text&fl=original,timestamp&filter=urlkey:.*wp[-].*&limit=1000000&xx=';
         break;
-    case 34:
+    /*case 34:
         url =  'https://censys.io/ipv4?q=' + site;
         break;
     case 35:
         url =  'https://censys.io/domain?q=' + site;
-        break; 
+        break; */
     case 36:
-        url =  'https://censys.io/certificates?q=' + site;
+        url =  'https://search.censys.io/search?resource=hosts&sort=RELEVANCE&per_page=25&virtual_hosts=EXCLUDE&q=' + site;
         break;
     case 37:
         url =  'https://www.shodan.io/search?query=' + site;
@@ -286,7 +286,8 @@ switch(type)
 &#128269; <a href="#" onclick="google_it(28)">Search in WayBack Machine #3</a><br/>
 &#128269; <a href="#" onclick="google_it(29)">Search in WayBack Machine [List/All]</a><br/>
 &#128269; <a href="#" onclick="google_it(30)">Check in crt.sh</a><br/>
-&#128269; Check in CENSYS <u><a href="#" onclick="google_it(34)">[IP4]</a></u> | <u><a href="#" onclick="google_it(35)">[DOMAINS]</a></u> | <u><a href="#" onclick="google_it(36)">[CERTS]</a></u><br/>
+<!-- &#128269; Check in CENSYS <u><a href="#" onclick="google_it(34)">[IP4]</a></u> | <u><a href="#" onclick="google_it(35)">[DOMAINS]</a></u> | <u><a href="#" onclick="google_it(36)">[CERTS]</a></u><br/> -->
+&#128269; Check in CENSYS <u><a href="#" onclick="google_it(36)">[HOSTS]</a></u><br/>
 &#128269; <a href="#" onclick="google_it(37)">Search in SHODAN</a><br/>
   </div>
   </div>
