@@ -60,7 +60,7 @@
     text-decoration:none;
     }
     a:hover {
-    color:#DA4932;
+    color:#0077ff;
     }
     hr {border: 2;width: 50%;}
     
@@ -75,7 +75,7 @@
         font-weight:700;
         width: 300px;
         height:50px;
-        padding:1px 0px 0px 5px;
+        padding:1px 0px 0px 10px;
         margin: 2px 0px 0px 10px;
         color:#ffbf00;
         border: 2.5px solid #ff00f2;
@@ -107,8 +107,10 @@
       ga('send', 'pageview');
     
     </script>
+
     <div id="particles-js">
-    <div style="font-family: Merienda One;text-align: center;font-size: 35pt;text-shadow: 0 0 6px #0077ff, 0 0 5px #0077ff, 0 0 5px #0077ff;color: #FFF">Bug Bounty Helper<br></div><br/>
+    <div style="display: flex;justify-content: center;font-family: Merienda One;text-align: center;font-size: 35pt;text-shadow: 0 0 6px #0077ff, 0 0 5px #0077ff, 0 0 5px #0077ff;color: #FFF" >
+    <img src=google-icon.svg width="50" height="60" style="margin-top: 5px ;margin-right: 20px;display: flex;justify-content: center;"/> Google Dorking<br></div><br/>
     <div onkeypress="check_submit(event)">
             
     <form novalidate="novalidate" onsubmit="return false" id="tool-form" role="form" method="GET" action="/" target="response-frame">
@@ -119,6 +121,23 @@
     document.getElementById('tool-form').setAttribute('onsubmit', 'return false');
     check_submit = function(event) {};
     </script>
+
+    <script>
+        function extractDomainName(site)
+        {
+            if($('#tool-form').valid() == false) {
+            return;
+        }
+            site = document.getElementById('target').value;
+            if (site.indexOf('://') > 0) {
+                site = site.substr(site.indexOf('://')+3);
+        }  
+            const lastDotIndex = site.lastIndexOf('.');
+            if (lastDotIndex === -1) return site; // Retourne le domaine entier s'il n'y a pas de point
+            return site.substring(0, lastDotIndex);
+        }
+    </script>
+
     <script>
     function google_it(type) 
     {
@@ -132,11 +151,13 @@
         }                            
         url = 'https://www.google.com/search?q=';
         url += 'site:' + site;
-    
+        domain_sans_tld = extractDomainName(site)
+
+        
     switch(type)
     {
         case 1:
-            url += '+intitle:index.of';
+            url += '+intitle:\"index of\"';
             break;
         case 2:
             url += '+ext:xml+|+ext:conf+|+ext:cnf+|+ext:reg+|+ext:inf+|+ext:rdp+|+ext:cfg+|+ext:txt+|+ext:ora+|+ext:ini';
@@ -151,13 +172,13 @@
             url += '+ext:bkf+|+ext:bkp+|+ext:bak+|+ext:old+|+ext:backup';
             break;
         case 6:
-            url += '+inurl:login';
+            url += '+inurl:signup+|+inurl:register+|+intitle:Signup+|+inurl:admin+|+inurl:login+|+inurl:adminlogin+|+inurl:cplogin+|+inurl:weblogin+|+inurl:quicklogin+|+inurl:wp-admin+|+inurl:wp-login+|+inurl:portal+|+inurl:userportal+|+inurl:loginpanel+|+inurl:memberlogin+|+inurl:remote+|+inurl:dashboard+|+inurl:auth+|+inurl:exchange+|+inurl:ForgotPassword+|+inurl:test';
             break;
         case 7:
             url += '+intext:"sql+syntax+near"+|+intext:"syntax+error+has+occurred"+|+intext:"incorrect+syntax+near"+|+intext:"unexpected+end+of+SQL+command"+|+intext:"Warning:+mysql_connect()"+|+intext:"Warning:+mysql_query()"+|+intext:"Warning:+pg_connect()"';
             break;
         case 8:
-            url += '+ext:doc+|+ext:docx+|+ext:odt+|+ext:pdf+|+ext:rtf+|+ext:sxw+|+ext:psw+|+ext:ppt+|+ext:pptx+|+ext:pps+|+ext:csv';
+            url += '+ext:doc+|+ext:docx+|+ext:odt+|+ext:pdf+|+ext:rtf+|+ext:sxw+|+ext:psw+|+ext:ppt+|+ext:pptx+|+ext:pps+|+ext:csv|+ext:swf';
             break;
         case 9:
             url += '+ext:php+intitle:phpinfo+"published+by+the+PHP+Group"';
@@ -178,13 +199,13 @@
             url += '+ext:action+|+ext:struts+|+ext:do';
             break;
         case 15:
-            url = 'https://www.google.com/search?q=site:pastebin.com+' + site;
+            url = 'https://www.google.com/search?q=site:justpaste.it+|+site:heypasteit.com+|+site:pastebin.com+' + site;
             break;
         case 16:
             url = 'https://www.google.com/search?q=site:linkedin.com+employees+' + site;
             break;
         case 17:
-            url += '+inurl:"/phpinfo.php"+|+inurl:".htaccess"+|+inurl:"/.git"+' + site + ' -github';
+            url += '+inurl:"/phpinfo.php"+|+inurl:".htaccess"+|+inurl:"/.git"+' + site + '+-github';
             break;
         case 18:
             url = 'https://www.google.com/search?q=site:*.' + site;
@@ -227,6 +248,9 @@
         case 31:
             url =  'https://www.openbugbounty.org/search/?search=' + site +'&type=host';
             break;
+        case 38:
+            url =  'https://www.openbugbounty.org/search/?search=*.' + site +'&type=host';
+            break;
         case 32:
             url =  'https://www.reddit.com/search/?q=' + site +'&source=recent';
             break; 
@@ -245,7 +269,25 @@
         case 37:
             url =  'https://www.shodan.io/search?query=' + site;
             break;
+        case 39:
+            url =  'https://www.google.com/search?q=inurl:"/.git"+' + site + '+-github';
+            break;
+        case 40:
+            url +=  '+ext:doc+|+ext:docx+|+ext:odt+|+ext:pdf+|+ext:rtf+|+ext:sxw+|+ext:psw+|+ext:ppt+|+ext:pptx+|+ext:pps+|+ext:csv+|+filetype:doc+|+filetype:docx+|+filetype:xls+|+filetype:xlsx+|+filetype:ppt+|+filetype:pptx+|+filetype:mdb+|+filetype:pdf+|+filetype:sql+|+filetype:txt+|+filetype:rtf+|+filetype:csv+|+filetype:xml+|+filetype:conf+|+filetype:dat+|+filetype:ini+|+filetype:log';
+            break;
+        case 41:
+            url +=  '+index%20of:id_rsa%20id_rsa.pub+|+filetype:py+|+filetype:html+|+filetype:sh+|+filetype:odt+|+filetype:key+|+filetype:sign+|+filetype:md+|+filetype:old+|+filetype:bin+|+filetype:cer+|+filetype:crt+|+filetype:pfx+|+filetype:crl+|+filetype:crs+|+filetype:der';
+            break;
+        case 42:
+            url =  'https://www.google.com/search?q=inurl:' + site + '+\"not+for+distribution\"+|+confidential+|+\"employee+only\"+|+proprietary+|+\"top+secret\"+|+classified+|+\"trade+secret\"+|+internal+|+private+filetype:xls+OR+filetype:csv+OR+filetype:doc+OR+filetype:pdf';
+        case 43:
+            url +=  '+\"PHP+Parse+error\" | \"PHP+Warning\" | \"PHP+Error\"';
+        case 44:
+            url +=  '+inurl:wp-content+|+inurl:wp-includes';
+        case 45:
+            url +=  '+inurl:wp-content+|+inurl:wp-includes';
     }
+
         window.open(url);
     
     }
@@ -258,13 +300,13 @@
     <div class="row">
       <div class="column"><div style="text-align: center;">
         <div style="display: inline-block; text-align: left;">
-    &#128269; <a href="#" onclick="google_it(1)">Directory listing vulnerabilities</a><br/>  
+    &#128269; <a href="#" onclick="google_it(1)">Directory listing vulnerabilities (index of)</a><br/>  
     &#128269; <a href="#" onclick="google_it(2)">Exposed Configuration files</a><br/>
     &#128269; <a href="#" onclick="google_it(3)">Exposed Database files</a><br/> 
     &#128269; <a href="#" onclick="google_it(10)">Find WordPress</a><br/>	
     &#128269; <a href="#" onclick="google_it(4)">Exposed log files</a><br/> 
     &#128269; <a href="#" onclick="google_it(5)">Backup and old files</a><br/>
-    &#128269; <a href="#" onclick="google_it(6)">Login pages</a><br/>
+    &#128269; <a href="#" onclick="google_it(6)">Login / Register / Admin pages</a><br/>
     &#128269; <a href="#" onclick="google_it(7)">SQL errors</a><br/>
     &#128269; <a href="#" onclick="google_it(8)">Publicly exposed documents</a><br/>
     &#128269; <a href="#" onclick="google_it(9)">phpinfo()</a><br/>
@@ -272,18 +314,22 @@
     &#128269; <a href="#" onclick="google_it(12)">Install / Setup files</a><br/>
     &#128269; <a href="#" onclick="google_it(13)">Open Redirects</a><br/>
     &#128269; <a href="#" onclick="google_it(14)">Apache STRUTS RCE</a><br/>
-    &#128269; <a href="#" onclick="google_it(15)">Find Pastebin entries</a><br/>
+    &#128269; <a href="#" onclick="google_it(15)">Pastebin-like sites</a><br/>
     &#128269; <a href="#" onclick="google_it(16)">Employees on LINKEDIN</a><br/>
     &#128269; <a href="#" onclick="google_it(17)">.htaccess sensitive files</a><br/>
     &#128269; <a href="#" onclick="google_it(18)">Find Subdomains</a><br/>
     &#128269; <a href="#" onclick="google_it(19)">Find Sub-Subdomains</a><br/>
+    &#128269; <a href="#" onclick="google_it(42)">Confidential documents</a><br/>
+    &#128269; <a href="#" onclick="google_it(43)">PHP errors</a><br/>
+    &#128269; <a href="#" onclick="google_it(45)">Project management sites</a><br/>
     </div></div></div>
     <div class="column"><div style="text-align: center;">
         <div style="display: inline-block; text-align: left;">
     &#128269; <a href="#" onclick="google_it(20)">Find WordPress #2</a><br/>
     &#128269; <a href="#" onclick="google_it(33)">Find WordPress [Wayback Machine]</a><br/>
     &#128269; <a href="#" onclick="google_it(21)">Search in GITHUB</a><br/>
-    &#128269; <a href="#" onclick="google_it(31)">Search in OpenBugBounty</a><br/>
+    &#128269; <a href="#" onclick="google_it(31)">Search in OpenBugBounty domain</a><br/>
+    &#128269; <a href="#" onclick="google_it(38)">Search in OpenBugBounty subdomain</a><br/>
     &#128269; <a href="#" onclick="google_it(32)">Search in Reddit</a><br/>
     &#128269; <a href="#" onclick="google_it(22)">Test CrossDomain</a><br/>
     &#128269; <a href="#" onclick="google_it(23)">Check in ThreatCrowd</a><br/>
@@ -297,6 +343,10 @@
     <!-- &#128269; Check in CENSYS <u><a href="#" onclick="google_it(34)">[IP4]</a></u> | <u><a href="#" onclick="google_it(35)">[DOMAINS]</a></u> | <u><a href="#" onclick="google_it(36)">[CERTS]</a></u><br/> -->
     &#128269; <a href="#" onclick="google_it(36)">Check in CENSYS [HOSTS]</a><br/>
     &#128269; <a href="#" onclick="google_it(37)">Search in SHODAN</a><br/>
+    &#128269; <a href="#" onclick="google_it(39)">.git folders</a><br/>
+    &#128269; <a href="#" onclick="google_it(40)">Exposed documents 1</a><br/>
+    &#128269; <a href="#" onclick="google_it(41)">Exposed documents 2</a><br/>
+    &#128269; <a href="#" onclick="google_it(44)">Wordpress files</a><br/>
       </div>
       </div>
       </div>
