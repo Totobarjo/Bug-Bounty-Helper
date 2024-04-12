@@ -16,8 +16,9 @@
         padding: 0px;
     }
     
-    .a:link {
-      text-decoration:overline;
+    ::placeholder {
+        color: rgba(128, 128, 128, 0.672);
+        opacity: 1; /* Firefox */
     }
 
     * {
@@ -66,16 +67,19 @@
     input{
         overflow: hidden;
         color:#FFF;
-            background: transparent;
-        border-radius:5px;
-        -moz-border-radius:5px;
-        -webkit-border-radius:5px;
+        background: transparent;
+        border-radius:10px;
         border: 1px solid;
-        font-family:Arial,sans-serif;
-        font-size:16px;
+        font-family:"Merienda One";
+        font-size:18px;
         font-weight:700;
-        height:32px;
-        padding:4px 16px;
+        width: 300px;
+        height:50px;
+        padding:1px 0px 0px 5px;
+        margin: 2px 0px 0px 10px;
+        color:#ffbf00;
+        border: 2.5px solid #ff00f2;
+            
     }
     </style>
     </head><body>
@@ -104,7 +108,7 @@
     
     </script>
     <div id="particles-js">
-    <div style="font-family: Merienda One;text-align: center;font-size: 25pt;text-shadow: 0 0 6px #FF0000, 0 0 5px #FF0000, 0 0 5px #FF0000;color: #FFF">Bug Bounty Helper<br></div><br/>
+    <div style="font-family: Merienda One;text-align: center;font-size: 35pt;text-shadow: 0 0 6px #0077ff, 0 0 5px #0077ff, 0 0 5px #0077ff;color: #FFF">Bug Bounty Helper<br></div><br/>
     <div onkeypress="check_submit(event)">
             
     <form novalidate="novalidate" onsubmit="return false" id="tool-form" role="form" method="GET" action="/" target="response-frame">
@@ -247,9 +251,9 @@
     }
     </script>
     
-    <div style="text-align: center;"><b>Target Domain:</b>
+    <div style="display: flex;justify-content: center;font-size: 35px;color: #0077ff;"><b>Target Domain:</b>
     
-    <input style="color: #ffbf00;border: 2px solid #ff00f2;outline: none;font-weight: bold;" id="target" name="target" placeholder="site.com" autofocus="" type="text"><br/></div>
+    <input style="outline: none;font-weight: bold" id="target" name="target" placeholder="site.com" autofocus="" type="text"><br/></div>
     
     <div class="row">
       <div class="column"><div style="text-align: center;">
@@ -301,7 +305,7 @@
     </div></div></form>
     <div style="clear: both;"></div>
     <hr>
-    <div style="font-family: Merienda One;text-align: center;font-size: 25pt;text-shadow: 0 0 6px #FF0000, 0 0 5px #FF0000, 0 0 5px #FF0000;color: #FFF">Helper Websites<br></div><br>
+    <div style="font-family: Merienda One;text-align: center;font-size: 25pt;text-shadow: 0 0 6px #0077ff, 0 0 5px #0077ff, 0 0 5px #0077ff;color: #FFF">Helper Websites<br></div><br>
     
     <div style="text-align: center;font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;">
         <div style="display: inline-block; text-align: left;">
